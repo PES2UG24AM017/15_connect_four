@@ -28,9 +28,13 @@ class Game:
             else:
                 col = self.ai.choose_column(self.board)
 
-            if col is None or self.board.drop(col, self.turn) is None:
+            row = self.board.drop(col, self.turn) if col is not None else None
+
+            if row is None:
                 print("Column unavailable.")
                 continue
+
+            print(f"{self.turn} placed a disc in column {col + 1}.")
 
             if self.board.winner(self.turn):
                 self.board.print()
